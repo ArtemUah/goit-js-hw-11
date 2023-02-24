@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const { default: axios } = require('axios');
+// const { default: axios } = require('axios');
 import Notiflix from 'notiflix';
 
 const apiKey = '33846839-b5c9af3d8a613bdc4bbe809f4';

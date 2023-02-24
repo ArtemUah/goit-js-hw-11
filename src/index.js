@@ -36,7 +36,7 @@
 import axios from 'axios';
 import PicturesApiService from './api';
 const picturesApiService = new PicturesApiService();
-const { default: axios } = require('axios');
+// const { default: axios } = require('axios');
 
 const form = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
