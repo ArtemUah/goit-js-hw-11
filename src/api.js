@@ -25,6 +25,11 @@ export default class PicturesApiService {
             btnLoadMore.style.display = 'none';
             return Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.')
         }
+        if (this.page === 2) {
+        Notiflix.Notify.success(`Hooray! We found ${response.data.totalHits} images`)
+        btnLoadMore.style.display = 'block';
+        return response.data;
+        }
         if ((this.page - 1) > response.data.totalHits / perPage) {
             console.log(response.data.totalHits)
             btnLoadMore.style.display = 'none';
@@ -33,8 +38,6 @@ export default class PicturesApiService {
         }
         else {
             btnLoadMore.style.display = 'block';
-            Notiflix.Notify.success(`Hooray! We found ${response.data.totalHits} images`)
-            console.log(response.data)
             return response.data;
         }
     }
