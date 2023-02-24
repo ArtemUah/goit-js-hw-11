@@ -1,42 +1,6 @@
-// import Notiflix from 'notiflix';
-
-// const url = 'https://pixabay.com/api/?';
-// const form = document.getElementById('search-form');
-// const input = document.querySelector('input');
-// const gallery = document.querySelector('.gallery');
-// const btnLoadMore = document.querySelector('.load-more');
-// let page = 1;
-// btnLoadMore.style.display = 'none';
-
-// form.addEventListener('submit', getPicture);
-// function getPicture(e) {
-//   e.preventDefault();
-//   gallery.innerHTML = '';
-//   btnLoadMore.style.display = 'none';
-//   const apiKey = '33846839-b5c9af3d8a613bdc4bbe809f4';
-//   const q = input.value;
-//   return fetch(
-//     `${url}key=${apiKey}&q=${q}&image_type=photo&orientation=horizontal&safesearch=true&per_page=8&page=${page}`
-//   )
-//     .then(response => response.json())
-//     .then(({ hits, totalHits }) => {
-//       markup(hits);
-//       btnLoadMore.style.display = 'block';
-//       console.log(totalHits)
-//     });
-// };
-
-// btnLoadMore.addEventListener('click', loadMore);
-// function loadMore(e) {
-//   e.preventDefault();
-//   page += 1;
-//   getPicture(e);
-// }
-
 import axios from 'axios';
 import PicturesApiService from './api';
 const picturesApiService = new PicturesApiService();
-// const { default: axios } = require('axios');
 
 const form = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');

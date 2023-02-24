@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// const { default: axios } = require('axios');
 import Notiflix from 'notiflix';
 
 const apiKey = '33846839-b5c9af3d8a613bdc4bbe809f4';
@@ -37,7 +36,7 @@ export default class PicturesApiService {
       btnLoadMore.style.display = 'block';
       return response.data;
     }
-    if (this.page - 1 > response.data.totalHits / perPage) {
+    if (this.page - 2 > response.data.totalHits / perPage) {
       console.log(response.data.totalHits);
       btnLoadMore.style.display = 'none';
       Notiflix.Notify.warning(
