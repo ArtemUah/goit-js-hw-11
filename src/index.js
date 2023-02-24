@@ -33,12 +33,10 @@
 //   getPicture(e);
 // }
 
-
-
-import axios from "axios";
-import PicturesApiService from "./api";
+import axios from 'axios';
+import PicturesApiService from './api';
 const picturesApiService = new PicturesApiService();
-const { default: axios } = require("axios");
+const { default: axios } = require('axios');
 
 const form = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
@@ -49,35 +47,39 @@ form.addEventListener('submit', getSearchedPictures);
 
 function getSearchedPictures(e) {
   e.preventDefault();
-  gallery.innerHTML ='';
+  gallery.innerHTML = '';
   picturesApiService.resetPage();
-  picturesApiService.searchQuery= e.currentTarget[0].value.trim();
-  picturesApiService.getPictures()
-    .then(({ hits }) => { 
-      if (hits === undefined) throw new Error;
-      return createMarkup(hits)
+  picturesApiService.searchQuery = e.currentTarget[0].value.trim();
+  picturesApiService
+    .getPictures()
+    .then(({ hits }) => {
+      if (hits === undefined) throw new Error();
+      return createMarkup(hits);
     })
-    .then((markup) => insertMarkup(markup))
-    .catch(e => console.log('Error: Sorry, there are no images matching your search query. Please try again.'));
-
-};  
+    .then(markup => insertMarkup(markup))
+    .catch(e =>
+      console.log(
+        'Error: Sorry, there are no images matching your search query. Please try again.'
+      )
+    );
+}
 
 btnLoadMore.addEventListener('click', loadMore);
 
 function loadMore(e) {
-  picturesApiService.getPictures()
+  picturesApiService
+    .getPictures()
     .then(({ hits, totalHits }) => {
       console.log(totalHits);
-      return createMarkup(hits)
+      return createMarkup(hits);
     })
-    .then((markup) => addMarkup(markup));
+    .then(markup => addMarkup(markup));
 }
 
 function createMarkup(hits) {
-  
   return hits.reduce(
-    (acc, { webformatURL, tags, likes, views, comments, downloads}) => {
-     return acc += `
+    (acc, { webformatURL, tags, likes, views, comments, downloads }) => {
+      return (acc += `
     <div class="photo-card">
   <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
@@ -94,16 +96,16 @@ function createMarkup(hits) {
       <b>Downloads: ${downloads}</b>
     </p>
   </div>
-</div>`;
+</div>`);
     },
     ''
   );
 }
 
 function insertMarkup(markup) {
-  gallery.innerHTML = `${markup}`
+  gallery.innerHTML = `${markup}`;
 }
 
 function addMarkup(markup) {
-  gallery.insertAdjacentHTML("beforeend", markup);
+  gallery.insertAdjacentHTML('beforeend', markup);
 }
